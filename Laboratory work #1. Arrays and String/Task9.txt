@@ -1,0 +1,41 @@
+482. License Key Formatting
+LeetCode: https://leetcode.com/problems/license-key-formatting/
+
+class Solution {
+    
+    public String licenseKeyFormatting(String S, int K) {
+        int n = S.length();
+        int i = 0;
+        String word = new String();
+        String result = new String();
+        
+        for(int q = 0; q < n; q++) {
+            if(S.charAt(q) != '-')
+                i++;
+        }
+        
+        int k = i % K;
+        
+        for(i = 0; k != 0; i++) {
+            if(S.charAt(i) != '-') {
+                result += S.charAt(i);
+                k--;
+            }
+        }
+        
+        while(i < n) {
+            if(S.charAt(i) != '-') {
+                word += S.charAt(i);
+            }
+            if(word.length() == K) {
+                
+                result = (result.length() != 0) ? (result + "-" + word) : word;
+                word = "";
+            }
+            
+            i++;
+        }
+        
+        return result.toUpperCase();
+    }
+}

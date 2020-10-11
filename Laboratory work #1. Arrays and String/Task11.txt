@@ -1,0 +1,49 @@
+273. Integer to English Words
+LeetCode: https://leetcode.com/problems/integer-to-english-words/
+
+class Solution {
+    
+     private final static String[] beforeTwenty = { "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", 
+                                         "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"
+                                        };
+    private final static String[] tens = {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty","Seventy", "Eighty", "Ninety"};
+    private final String[] thousands = {"", "Thousand", "Million", "Billion"};
+    
+    public String numberToWords(int num) {
+        String result = "";
+        String str = "";
+        int devideCurn = 0;
+        
+        if(num == 0)
+            return "Zero";
+        
+        while(num > 0) {
+            if(num % 1000 != 0){
+                str = findWord(num % 1000);
+                str = (thousands[devideCurn] != "") ? (str + " " + thousands[devideCurn]):str;
+                result = (result != "") ? (str + " " + result) : str; 
+                str="";
+            }
+            num /= 1000;
+            devideCurn++;
+        }
+        return result;
+        
+    }
+    
+    public String findWord(int num) {
+        String str = "";
+        
+        if(num < 20) {
+            return beforeTwenty[num];
+        } else if (num < 100) {
+            str = tens[num / 10];
+            str = (beforeTwenty[num % 10] != "") ? (str + " " + beforeTwenty[num % 10]) : str;
+            return str;
+        } else {
+            str = beforeTwenty[num / 100] + " Hundred";
+            str = (findWord(num % 100) != "") ? (str + " " +  findWord(num % 100)) : str;
+            return str;
+        }
+    }
+}

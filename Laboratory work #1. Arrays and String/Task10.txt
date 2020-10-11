@@ -1,0 +1,31 @@
+8. String to Integer (atoi)
+LeetCode: https://leetcode.com/problems/string-to-integer-atoi/
+
+class Solution {
+    public int myAtoi(String str) {
+        int startNumber = 0;
+        int sign = 1;
+        int result = 0;
+        int n = str.length();
+        
+        if(str.isEmpty())
+            return 0;
+        
+        while(startNumber < n && str.charAt(startNumber) == ' ')
+            startNumber++;
+        
+        if (startNumber < n && (str.charAt(startNumber) == '+' || str.charAt(startNumber) == '-'))
+            sign = (str.charAt(startNumber++) == '-') ? -1 : 1;
+        
+        while(startNumber < n && ( Character.isDigit(str.charAt(startNumber) ) ) ) {
+            if (result > Integer.MAX_VALUE / 10 ||
+                    (result == Integer.MAX_VALUE / 10 && str.charAt(startNumber) - '0' > Integer.MAX_VALUE % 10)) {
+                return (sign == 1) ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            }
+            result = result * 10 + (str.charAt(startNumber) - '0');
+            startNumber++;
+        }
+        
+        return result * sign;
+    }
+}
