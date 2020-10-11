@@ -1,0 +1,26 @@
+Задача №49. Списки по классам
+informatics.msk.ru: https://informatics.msk.ru/mod/statements/view.php?id=206#1
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+  queue < string > q[3];
+  int c;
+  string s;
+
+  while (cin >> c >> s) {
+    q[c - 9].push(s);
+  }
+
+  for (int i = 9; i <= 11; i++) {
+    while(!q[i].empty()) {
+      cout << i << " " << q[i - 9].front() << endl;
+      q[i - 9].pop();
+    }
+  }
+  return 0;
+}
+

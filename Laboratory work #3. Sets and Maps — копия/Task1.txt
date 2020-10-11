@@ -1,0 +1,69 @@
+Задача №54. Простой стек
+informatics.msk.ru: https://informatics.msk.ru/mod/statements/view.php?id=207#1
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct Stack {
+  int sz, a[1000];
+  
+  Stack() {
+      sz = 0;
+  }
+  
+  void push(int x) {
+      a[sz++] = x;
+      cout << "ok" << endl;
+  }
+  
+  void back() {
+      cout << a[sz - 1] << endl;
+  }
+  
+  void pop() {
+      cout << a[sz - 1] << endl;
+      sz--;
+  }
+  
+  void size() {
+      cout << sz << endl;
+  }
+  
+  void clear() {
+      sz = 0;
+      cout << "ok" << endl;
+  }
+  
+  void exit() {
+      cout << "bye" << endl;
+  }
+};
+
+int main()
+{
+    Stack st;
+    int x;
+    string s;
+    while (true) {
+        cin >> s;
+        if ("push" == s) {
+            cin >> x;
+            st.push(x);
+        } else if ("pop" == s) 
+            st.pop();
+        else if ("back" == s) 
+            st.back();
+        else if ("size" == s)
+            st.size();
+        else if ("clear" == s) 
+            st.clear();
+        else {
+            st.exit();
+            return 0;
+        }
+    }
+    return 0;
+}
+
+

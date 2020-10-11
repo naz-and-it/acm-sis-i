@@ -1,0 +1,49 @@
+Задача №50. Игра в пьяницу
+informatics.msk.ru: https://informatics.msk.ru/mod/statements/view.php?id=206&chapterid=50#1
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class Task8 {
+    public static void main(String[] args) {
+        Queue<Integer> player1 = new LinkedList<>();
+        Queue<Integer> player2 = new LinkedList<>();
+
+        Scanner sc = new Scanner(System.in);
+
+        for (int i = 0; i < 5; i++) {
+            player1.offer(sc.nextInt());
+        }
+
+        for (int i = 0; i < 5; i++) {
+            player2.offer(sc.nextInt());
+        }
+
+        int k = 0;
+
+        while (k < 1000000 && !player1.isEmpty() && !player2.isEmpty()) {
+            if (player1.peek() == 0 && player2.peek() == 9) {
+                player1.offer(player1.poll());
+                player1.offer(player2.poll());
+            } else if (player1.peek() == 9 && player2.peek() == 0) {
+                player2.offer(player1.poll());
+                player2.offer(player2.poll());
+            } else if (player1.peek() > player2.peek()) {
+                player1.offer(player1.poll());
+                player1.offer(player2.poll());
+            } else {
+                player2.offer(player1.poll());
+                player2.offer(player2.poll());
+            }
+            ++k;
+        }
+
+        String winner = "botva";
+        if (k != 1000000)
+            winner = (player1.isEmpty()) ? ("second " + k) : ("first " + k);
+        System.out.println(winner);
+    }
+}
+
+

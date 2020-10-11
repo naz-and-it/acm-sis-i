@@ -1,0 +1,41 @@
+Задача №112984. Гоблины и шаманы
+https://informatics.msk.ru/mod/statements/view.php?id=206&chapterid=112984#1
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+  deque < int > d1;
+  deque < int > d2;
+
+  int n, x;
+  char op;
+  cin >> n;
+
+  for(int i = 0; i < n; i++) {
+    cin >> op;
+    if (op == '-') {
+      cout << d1.front() << endl;
+      d1.pop_front();
+    } else {
+      cin >> x;
+
+      if(op == '+') {
+        d2.push_back(x);
+      } else {
+        d2.push_front(x);
+      }
+    }
+
+    if (d2.size() > d1.size()) {
+      x = d2.front();
+      d2.pop_front();
+      d1.push_back(x);
+    }
+  }
+    
+  return 0;
+}
+

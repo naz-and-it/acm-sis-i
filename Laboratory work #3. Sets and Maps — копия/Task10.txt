@@ -1,0 +1,36 @@
+Задача №52. Постфиксная запись
+https://informatics.msk.ru/mod/statements/view.php?id=206&chapterid=52#1
+
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Task10 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String s = sc.nextLine();
+
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < s.length(); i += 2) {
+            if (s.charAt(i) == '+') {
+                int b = stack.pop();
+                int a = stack.pop();
+                stack.push(a + b);
+            } else if (s.charAt(i) == '-') {
+                int b = stack.pop();
+                int a = stack.pop();
+                stack.push(a - b);
+            } else if (s.charAt(i) == '*') {
+                int b = stack.pop();
+                int a = stack.pop();
+                stack.push(a * b);
+            } else if (s.charAt(i) != ' '){
+                stack.push(s.charAt(i) - '0');
+            }
+        }
+
+        System.out.println(stack.pop());
+    }
+}
+

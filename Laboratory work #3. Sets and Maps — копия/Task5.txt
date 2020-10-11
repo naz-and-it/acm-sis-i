@@ -1,0 +1,90 @@
+Задача №60. Простой дек
+informatics.msk.ru: https://informatics.msk.ru/mod/statements/view.php?id=207&chapterid=60#1
+
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Task9 {
+    public static void main(String args[]) {
+        int x;
+        String s;
+
+        MyDequeque dequeue = new MyDequeque();
+        Scanner sc = new Scanner(System.in);
+
+        while(true) {
+            s = sc.next();
+            if (s.equals("push_front")) {
+                x = sc.nextInt();
+                dequeue.push_front(x);
+            } else if (s.equals("push_back")) {
+                x = sc.nextInt();
+                dequeue.push_back(x);
+            }
+            else if (s.equals("pop_front"))
+                dequeue.pop_front();
+            else if (s.equals("pop_back"))
+                dequeue.pop_back();
+            else if (s.equals("front"))
+                dequeue.front();
+            else if (s.equals("back"))
+                dequeue.back();
+            else if (s.equals("size"))
+                dequeue.size();
+            else if (s.equals("clear"))
+                dequeue.clear();
+            else {
+                dequeue.exit();
+                return;
+            }
+        }
+    }
+
+    static class MyDequeque {
+        ArrayList<Integer> dequeue = new ArrayList<>();
+
+        void push_front(int x) {
+            dequeue.add(0, x);
+            System.out.println("ok");
+        }
+
+        void push_back(int x) {
+           dequeue.add(x);
+            System.out.println("ok");
+        }
+
+        void pop_back() {
+            int x = dequeue.get(dequeue.size() - 1);
+            dequeue.remove(dequeue.size() - 1);
+            System.out.println(x);
+        }
+
+        void pop_front() {
+            int x = dequeue.get(0);
+            dequeue.remove(0);
+            System.out.println(x);
+        }
+
+        void front() {
+            System.out.println(dequeue.get(0));
+        }
+
+        void back() {
+            System.out.println(dequeue.get(dequeue.size() - 1));
+        }
+
+        void size() {
+            System.out.println(dequeue.size());
+        }
+
+        void clear() {
+            dequeue.clear();
+            System.out.println("ok");
+        }
+
+        void exit() {
+            System.out.println("bye");
+        }
+
+    }
+}
