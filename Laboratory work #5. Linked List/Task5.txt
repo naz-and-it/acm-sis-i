@@ -1,0 +1,53 @@
+86. Partition List
+LeetCode: https://leetcode.com/problems/partition-list/
+
+
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        if(head == NULL)
+            return NULL;
+        
+        ListNode *left = NULL;
+        ListNode *leftHead = NULL;
+        
+        ListNode *right = NULL;
+        ListNode *rightHead = NULL;
+        
+        ListNode *current = head;
+        
+        while(true) {
+            if (current == NULL)
+                break;
+            else if(current->val < x) {
+                if(left == NULL) {
+                    left = current;
+                    leftHead = current;
+                } else {
+                    left->next = current;
+                    left = current;
+                }
+                current = current->next;
+            } else {
+                if(right == NULL) {
+                    rightHead = current;
+                    right = current;
+                } else {
+                    right->next = current;
+                    right = current;
+                }
+                current = current->next;
+            }
+        }
+        
+        if(leftHead == NULL || rightHead == NULL)
+            return head;
+        else
+        {
+            left->next = rightHead;
+            right->next = NULL;
+            return leftHead;
+        }
+        
+    }
+};

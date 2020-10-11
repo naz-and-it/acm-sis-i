@@ -1,0 +1,59 @@
+21. Merge Two Sorted Lists
+LeetCode: https://leetcode.com/problems/merge-two-sorted-lists/
+
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode *i = l1;
+        ListNode *j = l2;
+        ListNode *head = NULL;
+        ListNode *current =NULL;
+        
+        while(i != NULL || j != NULL) {
+            
+            if(i != NULL && j != NULL) {
+                
+                if (i->val < j->val) {
+                    if(head == NULL) 
+                        head = i;
+                    else 
+                        current->next = i;
+                    
+                    current = i;
+                    i = i->next;
+                    
+                } else if (i->val > j->val) {
+                    if(head == NULL)
+                        head = j;
+                    else
+                        current->next = j;
+                    
+                    current = j;
+                    j = j->next;
+                } else {
+                    if(head == NULL) 
+                        head = i;
+                    else 
+                        current->next = i;
+                    
+                    current = i;
+                    i = i->next;
+                }
+            } else if (i == NULL) {
+                if (head == NULL)
+                    head = j;
+                else 
+                    current->next = j;
+                break;
+            } else {
+                if (head == NULL)
+                    head = i;
+                else 
+                    current->next = i;
+                break;
+            }
+        }
+        return head;
+    }
+};
+

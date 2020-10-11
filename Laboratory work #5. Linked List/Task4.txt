@@ -1,0 +1,27 @@
+141. Linked List Cycle
+LeetCode: https://leetcode.com/problems/linked-list-cycle/
+
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        ListNode *slow = head;
+        ListNode *fast = head;
+        
+        while(slow != NULL && fast != NULL) {
+            slow = slow->next;
+            fast = fast->next;
+            
+            if(fast == NULL)
+                return false;
+            
+            fast = fast->next;
+            
+            if(slow == NULL || fast == NULL)
+                return false;
+            if(slow->val == fast->val)
+                return true;
+        }
+        
+        return false;
+    }
+};
