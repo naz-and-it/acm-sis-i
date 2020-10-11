@@ -1,0 +1,52 @@
+1370. Increasing Decreasing String
+LeetCode: https://leetcode.com/problems/increasing-decreasing-string/
+
+class Solution {
+public:
+    string sortString(string s) {
+        string result = "";
+        sort(s.begin(), s.end());
+
+        while(s.size() > 0) {
+            if(s.size() > 0) {
+                result += s[0];
+                s.erase(0, 1);
+            }
+            while(true){
+                bool flag = false;
+                for(int i =0; i < s.size(); ++i) {
+                    if (result.back() < s[i]) {
+                        result += s[i];
+                        flag = true;
+                        s.erase(i, 1);
+                        break;
+                    }
+                }
+                
+                if(!flag)
+                    break;
+            }
+            
+            if (s.size() > 0) {
+                result += s[s.size() - 1];
+                s.erase(s.size() - 1, 1);
+            }
+            
+            while (true) {
+                bool flag = false;
+                for(int i = int(s.size()) - 1; i >= 0; --i) {
+                    if (result.back() > s[i]) {
+                        result += s[i];
+                        flag = true;
+                        s.erase(i, 1);
+                        break;
+                    }
+                }
+                
+                if(!flag)
+                    break;
+            }
+        }
+        return result;
+    }
+};
