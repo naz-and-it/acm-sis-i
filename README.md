@@ -1,14 +1,14 @@
 # acm-sis-i
 
-**ACM SIS I**
+#**ACM SIS I**
 
 **Check your git version:** git --version
 
-**Clone local respository:** git clone <local-url>
+**Clone local respository:** git clone local-url
 
 **Overview sice last commit:** git status
 
-**Add single file:** git add <filename>
+**Add single file:** git add filename
 
 **Add all files:** git add .
 
@@ -18,4 +18,4 @@
 
 **Update local repository with remote changes:** git pull
 
-**Create a new branch then switch to new branch:** git checkout -b <new-name>
+**Create a new branch then switch to new branch:** git checkout -b new-name
