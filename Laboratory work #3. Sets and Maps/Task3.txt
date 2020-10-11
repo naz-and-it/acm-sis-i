@@ -1,0 +1,23 @@
+349. Intersection of Two Arrays
+LeetCode: https://leetcode.com/problems/intersection-of-two-arrays/
+
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        HashSet<Integer> set1 = new HashSet<Integer>();
+        HashSet<Integer> set2 = new HashSet<Integer>();
+        
+        for(int a : nums1)
+            set1.add(a);
+        
+        for(int a : nums2)
+            set2.add(a);
+         
+        int [] res = new int[set1.size()];
+        int i = 0;
+        for (Integer a : set1)
+            if (set2.contains(a)) 
+                res[i++] = a;
+
+        return Arrays.copyOf(res, i);     
+    }
+}
